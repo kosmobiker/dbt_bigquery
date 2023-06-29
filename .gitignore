@@ -243,3 +243,9 @@ rsconnect/
 # R package: bookdown caching files
 /*_files/
 
+
+# Default .gitignore content added by dbt Cloud
+target/
+dbt_packages/
+logs/
+# end dbt Cloud content
