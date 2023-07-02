@@ -10,8 +10,10 @@ resource "google_storage_bucket" "my_bucket" {
   force_destroy = true
 }
 
-resource "google_bigquery_dataset" "my_bugquery_dataset" {
+resource "google_bigquery_dataset" "my_bigquery_dataset" {
   dataset_id                  = "landing"
   location                    = "europe-north1"
-  default_table_expiration_ms = 3600000
+  default_table_expiration_s  = 7776000000 # 90 days
+  deletion_protection         = false
+  description                 = "This is a dataset for landing data"
 }
