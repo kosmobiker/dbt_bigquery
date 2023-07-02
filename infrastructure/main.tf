@@ -10,8 +10,8 @@ resource "google_storage_bucket" "my_bucket" {
   force_destroy = true
 }
 
-resource "google_bigquery_dataset" "my_dataset_super_test_161" {
-  dataset_id                  = "terraform_test_schema"
+resource "google_bigquery_dataset" "my_bugquery_dataset" {
+  dataset_id                  = "landing"
   location                    = "europe-north1"
   default_table_expiration_ms = 3600000
 }
