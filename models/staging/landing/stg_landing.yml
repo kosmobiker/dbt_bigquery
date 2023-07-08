@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: stg_cards
+    columns: 
+      - name: user_id
+        tests:
+          - not_null
+
+  - name: stg_transactions
+    columns:
+      - name: transaction_id
+        tests:
+          - unique
+          - not_null
+      - name: Use_Chip
+        tests:
+          - accepted_values:
+              values:
+                - Swipe Transaction
+                - Online Transaction
+                - Chip Transaction
+                
+  - name: stg_users
+    columns:
+      - name: user_id
+        tests:
+            - unique
+            - not_null
+      - name: Gender
+        tests:
+          - accepted_values:
+              values:
+                - Male
+                - Female
