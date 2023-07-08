@@ -10,7 +10,7 @@ with cte as (
                 CAST(day as STRING), ' ', time
             )
         ) as datetime
-    from `landing.transactions`
+    from {{ source('source_bigquery', 'transactions') }}
 )
 select *
 from cte

@@ -10,4 +10,4 @@ select
     Card_On_Dark_Web,
     PARSE_DATETIME('%m/%Y', Expires) as Expires,
     PARSE_DATETIME('%m/%Y', Acct_Open_Date) as Acct_Open_Date
-from `landing.cards`
+from {{ source('source_bigquery', 'cards') }}

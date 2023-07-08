@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: source_bigquery
+    database: maximal-storm-391319
+    schema: landing
+    tables:
+      - name: cards
+      - name: users
+      - name: transactions
+        loaded_at_field: _etl_loaded_at
+        freshness:
+            warn_after: {count: 12, period: day}
+            error_after: {count: 24, period: day}
