@@ -1,5 +1,5 @@
 -- this data check must fail due to the fact of synthetic data 
--- statement `and t1.total_amount = 0` just to pass the test
+-- statement `and t1.total_amount < 0` just to pass the test
 with total_spendings_per_card as (
     select
         t1.user_id,
