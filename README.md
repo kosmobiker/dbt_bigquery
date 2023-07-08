@@ -4,9 +4,9 @@ In this repo I am going to show how to use dbt with Google BigQuery.
 It will be my first experience with dbt and BigQuery, so I will be learning as I go.
 Let's go!
 
-<div style="display: flex;">
+<div style="display: flex; margin-right: 200px;">
   <img src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_017ca5b65bc8cc79fa434f2716af16ee/dbt.png" alt="Image 1" width="300" height="200">
-  <img src="https://pngset.com/images/google-big-query-logo-download-vector-logos-logo-google-bigquery-text-number-symbol-alphabet-transparent-png-2501117.png" alt="Image 2" width="500" height="200">
+  <img src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" alt="Image 2" width="500" height="200">
 </div>
 
 ___
