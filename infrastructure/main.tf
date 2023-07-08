@@ -17,3 +17,11 @@ resource "google_bigquery_dataset" "my_bigquery_dataset" {
   deletion_protection         = false
   description                 = "This is a dataset for landing data"
 }
+
+resource "google_bigquery_dataset" "my_bigquery_dataset_tr" {
+  dataset_id                  = "transform"
+  location                    = "europe-north1"
+  default_table_expiration_s  = 7776000000 # 90 days
+  deletion_protection         = false
+  description                 = "This is a dataset for transformed data"
+}
