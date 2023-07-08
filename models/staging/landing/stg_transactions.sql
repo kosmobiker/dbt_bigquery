@@ -1,5 +1,6 @@
 with cte as (
     select
+        GENERATE_UUID() AS transaction_id,
         *,
         PARSE_DATETIME(
             '%Y-%m-%d %H:%M',
@@ -11,6 +12,5 @@ with cte as (
         ) as datetime
     from `landing.transactions`
 )
-
 select *
 from cte
