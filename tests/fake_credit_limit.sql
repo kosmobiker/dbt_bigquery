@@ -4,12 +4,14 @@ with total_spendings_per_card as (
     select
         t1.user_id,
         t1.card_index,
+        t2.year,
+        t2.month,
         sum(t2.amount) as total_amount
     from {{ ref('stg_cards') }} as t1
     inner join
         {{ ref('stg_transactions') }} as t2
         on t1.user_id = t2.user and t1.card_index = t2.card
-    group by t1.user_id, t1.card_index
+    group by t1.user_id, t1.card_index, t2.year, t2.month
 )
 
 select
@@ -21,4 +23,5 @@ inner join
     on t1.user_id = t2.user_id and t1.card_index = t2.card_index
 where t1.total_amount > credit_limit 
 and t1.total_amount < 0
+
 

@@ -3,19 +3,23 @@ version: 2
 sources:
   - name: source_bigquery
     database: maximal-storm-391319
+    description: raw csv files from Kaggle. Check the README.md for more info
     schema: landing
     tables:
       - name: cards
+        description: raw cards data 
         loaded_at_field: _etl_loaded_at
         freshness:
             warn_after: {count: 5, period: day}
             error_after: {count: 10, period: day}
       - name: users
+        description: raw users date. I am reading Song of Susannah at that moment
         loaded_at_field: _etl_loaded_at
         freshness:
             warn_after: {count: 5, period: day}
             error_after: {count: 10, period: day}
       - name: transactions
+        description: raw transactions data. Main source of the information
         loaded_at_field: _etl_loaded_at
         freshness:
             warn_after: {count: 12, period: hour}
