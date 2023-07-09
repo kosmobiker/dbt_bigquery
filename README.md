@@ -83,4 +83,12 @@ There are two singular test in the repo, but both of them are fake cause the syn
 1. First test is about checking if the total amount of transaction is not higher the credit limit. I know that it is not the best cause we don't have incomes, but it is just an example.
 2. Second test is about checking if number of cards per users in `transactions` table is the same as in `cards` table.
 
-## To be continued...
+## Deployment
+
+Everything is deployed using dbt Cloud. I created seperate environemnt and manually trigger test job.
+
+## Future Improvemnets
+
+1. Job orchestration using Prefect (or Airflow)
+2. Advanced deployment  with CI/CD (see the course on dbt Labs)
+3. Advanced testing with Jinja and macros (see the course on dbt Labs)
