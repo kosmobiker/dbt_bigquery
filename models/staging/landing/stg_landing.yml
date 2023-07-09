@@ -2,18 +2,23 @@ version: 2
 
 models:
   - name: stg_cards
+    description: table contains information about cards and their properties
     columns: 
       - name: user_id
+        description: primary key for stg_cards
         tests:
           - not_null
 
   - name: stg_transactions
+    description: fact table with transactions of the users
     columns:
       - name: transaction_id
+        description: primary key for stg_transactions
         tests:
           - unique
           - not_null
       - name: Use_Chip
+        description: '{{ doc("Use_Chip") }}'
         tests:
           - accepted_values:
               values:
@@ -22,8 +27,10 @@ models:
                 - Chip Transaction
                 
   - name: stg_users
+    description: table contains information about users and their properties
     columns:
       - name: user_id
+        description: primary key for stg_users
         tests:
             - unique
             - not_null
