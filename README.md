@@ -23,7 +23,7 @@ ___
 
 ### Context
 
-Linst to dataset [here](https://www.kaggle.com/datasets/ealtman2019/credit-card-transactions?select=credit_card_transactions-ibm_v2.csv).
+Link to the dataset [here](https://www.kaggle.com/datasets/ealtman2019/credit-card-transactions?select=credit_card_transactions-ibm_v2.csv).
 
 Limited credit card transaction data is available for training fraud detection models and other uses, such as analyzing similar purchase patterns. Credit card data that is available often has significant obfuscation, relatively few transactions, and short time duration. For example, [this Kaggle dataset](https://www.kaggle.com/mlg-ulb/creditcardfraud) has 284,000 transactions over two days, of which less than 500 are fraudulent. In addition, all but two columns have had a principal components transformation, which obfuscates true values and makes the column values uncorrelated.
 
@@ -34,9 +34,9 @@ Further details about the generation are [here](https://arxiv.org/abs/1910.03033
 
 ### File descriptions:
 
-- `credit_card_transactions-ibm_v2.csv` (2.35 GB) - the main file with 20 million transactions
-- `sd254_cards.csv` (487.12 kB) - information about cards
-- `sd254_users.csv` (224.39 kB) - inforamtion about users
+- `credit_card_transactions-ibm_v2.csv` (2.35 GB) - the main file with 20 million transactions;
+- `sd254_cards.csv` (487.12 kB) - information about cards;
+- `sd254_users.csv` (224.39 kB) - information about users.
 
 ## Setup
 
@@ -53,7 +53,7 @@ Further details about the generation are [here](https://arxiv.org/abs/1910.03033
 
 ### Terraform
 
-In this section it should specified the creating of the bucket and datasets. See `main.tf` in this repo for example.
+Terraform is used to create all required infrastructure. See `main.tf` in this repo for example.
 
 ### dbt
 
@@ -65,7 +65,7 @@ In this section it should specified the creating of the bucket and datasets. See
 
 ## Model description
 
-Imagine that you work in the bank and guys from AI department and AML department asked you to create marts  with appropiate datasets. They want to use this data for training models or for fraud detection. 
+Imagine that you work in the bank and guys from AI department and AML department asked you to create marts with appropiate datasets. They want to use this data for the training of the fraud detection models. 
 
 **Models** are the core of dbt projects. They are the building blocks of your data transformation pipeline. Models are defined in `.sql` files in the `models` directory. Each model file contains a single SQL query that defines a dataset in your warehouse. Models can reference other models, and dbt will execute the necessary queries in the correct order to build your data pipeline.:
 
@@ -89,6 +89,6 @@ Everything is deployed using dbt Cloud. I created seperate environemnt and manua
 
 ## Future Improvemnets
 
-1. Job orchestration using Prefect (or Airflow)
+1. Job orchestration using Airflow
 2. Advanced deployment  with CI/CD (see the course on dbt Labs)
 3. Advanced testing with Jinja and macros (see the course on dbt Labs)
