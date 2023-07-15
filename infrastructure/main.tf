@@ -13,15 +13,95 @@ resource "google_storage_bucket" "my_bucket" {
 resource "google_bigquery_dataset" "my_bigquery_dataset" {
   dataset_id                  = "landing"
   location                    = "europe-north1"
-  default_table_expiration_s  = 7776000000 # 90 days
-  deletion_protection         = false
+  default_table_expiration_ms = 2592000000
   description                 = "This is a dataset for landing data"
 }
 
 resource "google_bigquery_dataset" "my_bigquery_dataset_tr" {
   dataset_id                  = "transform"
   location                    = "europe-north1"
-  default_table_expiration_s  = 7776000000 # 90 days
-  deletion_protection         = false
+  default_table_expiration_ms = 2592000000
   description                 = "This is a dataset for transformed data"
+}
+
+resource "google_bigquery_dataset" "my_bigquery_dataset_pub" {
+  dataset_id                  = "public"
+  location                    = "europe-north1"
+  default_table_expiration_ms = 2592000000
+  description                 = "This is a dataset for public data (deployment)"
+}
+
+
+resource "google_compute_instance" "airflow" {
+  name         = "airflow-machine"
+  machine_type = "n2-standard-2"
+  zone         = "europe-north1-a"
+
+  tags = ["airflow"]
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+    }
+  }
+
+  network_interface {
+    network = "default"
+    access_config {
+    }
+  }
+
+  metadata = {
+    ssh-keys = "kosmobiker:${file("../../../.ssh/airflow-key.pub")}"
+  }
+
+  service_account {
+    scopes = ["userinfo-email", "compute-ro", "storage-ro"]
+  }
+
+  lifecycle {
+    ignore_changes = [metadata]
+  }
+
+  metadata_startup_script = <<-SCRIPT
+    #!/bin/bash
+
+    # Update all packages
+    sudo apt-get update
+    sudo apt-get upgrade -y
+
+    # Install Python and Pip
+    sudo apt-get install -y python3
+    sudo apt install -y python3-pip
+  SCRIPT
+}
+
+resource "google_compute_firewall" "ssh" {
+  name    = "allow-ssh"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags = ["airflow"]
+}
+
+resource "google_compute_firewall" "http" {
+  name    = "allow-http"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["8080"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags = ["airflow"]
+}
+
+output "instance_ip" {
+  value = google_compute_instance.airflow.network_interface.0.access_config.0.nat_ip
 }
