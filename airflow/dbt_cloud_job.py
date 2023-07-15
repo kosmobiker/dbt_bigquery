@@ -7,11 +7,10 @@ from airflow.models import DAG
 from airflow.operators.empty import EmptyOperator
 from airflow.providers.dbt.cloud.operators.dbt import (
     DbtCloudGetJobRunArtifactOperator,
-    DbtCloudListJobsOperator,
     DbtCloudRunJobOperator,
 )
 from airflow.utils.edgemodifier import Label
-from airflow.providers.dbt.cloud.sensors.dbt import DbtCloudJobRunAsyncSensor, DbtCloudJobRunSensor
+from airflow.providers.dbt.cloud.sensors.dbt import DbtCloudJobRunSensor
 
 DAG_ID = "test_dbt_cloud_job"
 JOB_ID = 381152
