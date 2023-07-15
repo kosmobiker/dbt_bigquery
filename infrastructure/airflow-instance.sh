@@ -16,3 +16,9 @@ pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}
 
 # add aitflow to PATH
 PATH=$PATH:~/.local/bin
+
+# install dbt cloud airflow plugin
+pip install apache-airflow-providers-dbt-cloud[http]
+
+#add api token for dbt cloud
+export AIRFLOW_CONN_DBT_CLOUD_DEFAULT='dbt-cloud://:425ac61c45bfa7ccbffa4d52f37d64648fa46fc5@'
