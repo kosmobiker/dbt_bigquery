@@ -18,6 +18,7 @@ ___
 - [ ] [Google Cloud account](https://cloud.google.com/)
 - [ ] [Google Cloud project](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
 - [ ] [Terraform](https://www.terraform.io/downloads.html)
+- [ ] [VM instance in GCP](https://cloud.google.com/compute/docs/instances/create-start-instance) for Airflow
 
 ## About Dataset
 
@@ -61,11 +62,16 @@ Terraform is used to create all required infrastructure. See `main.tf` in this r
 2. Create a new project in dbt Cloud.
 3. Create a new connection to BigQuery.
 4. Create a new connection to GitHub.
-5. Follow the instructions. In his repo I will use syntethetic transactions data as it is more interesting for me.
+5. Follow the instructions. In his repo I will use synthetic transactions data as it is more interesting for me.
+
+### Airflow
+
+Process of setting up of the Airflow is described in `infrastructure/airflow-instance.sh` file. We will use an VM machine in GCP with Debian to run the Airflow standalone server. To add DAG to the airflow it is important clone the repo and modify `airflow.cfg` file and add `dags_folder = /home/<REPO>/dags` to the `[core]` section. Then copy python script to the DAG folder, restart the Airflow and it will be automatically added to the Airflow.
+IMPORTANT: don't forget to generate SSH keys to access the VM instance and set up the Airflow. 
 
 ## Model description
 
-Imagine that you work in the bank and guys from AI department and AML department asked you to create marts with appropiate datasets. They want to use this data for the training of the fraud detection models. 
+Imagine that you work in the bank and guys from AI department and AML department asked you to create marts with appropriate datasets. They want to use this data for the training of the fraud detection models. 
 
 **Models** are the core of dbt projects. They are the building blocks of your data transformation pipeline. Models are defined in `.sql` files in the `models` directory. Each model file contains a single SQL query that defines a dataset in your warehouse. Models can reference other models, and dbt will execute the necessary queries in the correct order to build your data pipeline.:
 
@@ -85,10 +91,9 @@ There are two singular test in the repo, but both of them are fake cause the syn
 
 ## Deployment
 
-Everything is deployed using dbt Cloud. I created seperate environemnt and manually trigger test job.
+Everything is deployed using dbt Cloud. I created separate environment and manually trigger test job. Also it could be triggered by Airflow.
 
-## Future Improvemnets
+## Future Improvements
 
-1. Job orchestration using Airflow
-2. Advanced deployment  with CI/CD (see the course on dbt Labs)
-3. Advanced testing with Jinja and macros (see the course on dbt Labs)
+1. Advanced deployment  with CI/CD (see the course on dbt Labs)
+2. Advanced testing with Jinja and macros (see the course on dbt Labs)
