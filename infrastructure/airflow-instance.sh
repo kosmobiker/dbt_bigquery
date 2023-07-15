@@ -4,9 +4,10 @@
 sudo apt-get update
 sudo apt-get upgrade -y
 
-# Install Python and Pip
+# Install Python and Pip and Git
 sudo apt-get install -y python3
 sudo apt install python3-pip
+sudo apt install -y git
 
 #install airflow
 AIRFLOW_VERSION=2.6.3
@@ -19,6 +20,3 @@ PATH=$PATH:~/.local/bin
 
 # install dbt cloud airflow plugin
 pip install apache-airflow-providers-dbt-cloud[http]
-
-#add api token for dbt cloud
-export AIRFLOW_CONN_DBT_CLOUD_DEFAULT='dbt-cloud://:425ac61c45bfa7ccbffa4d52f37d64648fa46fc5@'
