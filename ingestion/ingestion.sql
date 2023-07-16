@@ -1,6 +1,6 @@
 /*
 This is an example of how to load data from GCS into BigQuery.
-Theree file are avaulable in the GCS bucket:
+This files are available in the GCS bucket:
 - sd254_users.csv - information about users
 - sd254_cards.csv - information about cards
 - credit_card_transactions-ibm_v2.csv - information about transactions
