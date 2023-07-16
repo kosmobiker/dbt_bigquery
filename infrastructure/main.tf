@@ -31,7 +31,6 @@ resource "google_bigquery_dataset" "my_bigquery_dataset_pub" {
   description                 = "This is a dataset for public data (deployment)"
 }
 
-
 resource "google_compute_instance" "airflow" {
   name         = "airflow-machine"
   machine_type = "n2-standard-2"
@@ -63,17 +62,7 @@ resource "google_compute_instance" "airflow" {
     ignore_changes = [metadata]
   }
 
-  metadata_startup_script = <<-SCRIPT
-    #!/bin/bash
-
-    # Update all packages
-    sudo apt-get update
-    sudo apt-get upgrade -y
-
-    # Install Python and Pip
-    sudo apt-get install -y python3
-    sudo apt install -y python3-pip
-  SCRIPT
+  metadata_startup_script = "${file("airflow-instance.sh")}"
 }
 
 resource "google_compute_firewall" "ssh" {

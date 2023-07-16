@@ -6,7 +6,7 @@ sudo apt-get upgrade -y
 
 # Install Python and Pip and Git
 sudo apt-get install -y python3
-sudo apt install python3-pip
+sudo apt install -y python3-pip
 sudo apt install -y git
 
 #install airflow
@@ -18,5 +18,7 @@ pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}
 # add aitflow to PATH
 PATH=$PATH:~/.local/bin
 
-# install dbt cloud airflow plugin
+# install dbt cloud and Bigquery airflow plugins
 pip install apache-airflow-providers-dbt-cloud[http]
+pip install apache-airflow[google]
+
